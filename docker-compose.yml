@@ -1,0 +1,21 @@
+version: '3'
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    volumes:
+      - ./adguard/work:/opt/adguardhome/work
+      - ./adguard/conf:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 68:68/tcp
+      - 68:68/udp
+      - 8080:80/tcp #Puerto de acceso a la interfaz web
+      - 8443:443/tcp
+      - 8853:853/tcp
+      - 3000:3000/tcp #Puerto para instalación
+    restart: always
+    labels:
+      - "diun.enable=true"
